@@ -33,7 +33,7 @@ public class CategoryAttributeApi {
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
         }
-        CategoryAttribute createdCategoryAttrribute = categoryAttributeService.save(categoryAttribute);
+        CategoryAttribute createdCategoryAttrribute = categoryAttributeService.create(categoryAttribute);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("201")
                 .withMessage("category attribute saved successfully.")
@@ -51,7 +51,7 @@ public class CategoryAttributeApi {
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
         }
-        CategoryAttribute updatedCategoryAttribute = categoryAttributeService.save(categoryAttribute);
+        CategoryAttribute updatedCategoryAttribute = categoryAttributeService.update(categoryAttribute);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("200")
                 .withMessage("category updated successfully.")
@@ -82,12 +82,12 @@ public class CategoryAttributeApi {
     public @ResponseBody
     ResponseEntity<?> getCategoryAttributesById(@PathVariable("id") long id) {
 
-     CategoryAttribute categories = categoryAttributeService.findById(id);
+     CategoryAttribute categoryAtrribute = categoryAttributeService.findById(id);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("200")
-                .withMessage(categories!=null ? "No records found": "category attribute details fetched successfully.")
+                .withMessage(categoryAtrribute==null ? "No records found": "category attribute details fetched successfully.")
                 .withTimestamp(new Date())
-                .withData(categories)
+                .withData(categoryAtrribute)
                 .withStatus(HttpStatus.OK).build();
         return new ResponseEntity<>(responseBody, responseBody.getStatus());
 

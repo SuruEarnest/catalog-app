@@ -34,7 +34,7 @@ public class ProductApi {
 		if (result.hasErrors()) {
 			throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
 		}
-        Product customerRecord = productService.save(product);
+        Product customerRecord = productService.create(product);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
 				.withCode("201")
 				.withMessage("product saved successfully.")
@@ -52,7 +52,7 @@ public class ProductApi {
 		if (result.hasErrors()) {
 			throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
 		}
-		Product customerRecord = productService.save(product);
+		Product customerRecord = productService.update(product);
 		CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
 				.withCode("200")
 				.withMessage("product saved successfully.")

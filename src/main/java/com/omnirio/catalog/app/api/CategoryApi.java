@@ -34,7 +34,7 @@ public class CategoryApi {
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
         }
-        Category createdCategory = categoryService.save(category);
+        Category createdCategory = categoryService.create(category);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("201")
                 .withMessage("category saved successfully.")
@@ -52,7 +52,7 @@ public class CategoryApi {
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
         }
-        Category updatedCategory = categoryService.save(category);
+        Category updatedCategory = categoryService.update(category);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("200")
                 .withMessage("category updated successfully.")
