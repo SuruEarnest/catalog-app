@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Long> {
-	Category findById(long id);
-	Category findByName(String name);
+	Category findByCategoryId(long id);
+	Category findByCategoryName(String name);
 	Page<Category> findAll(Pageable pageable);
 }

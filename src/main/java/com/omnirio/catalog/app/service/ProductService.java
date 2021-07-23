@@ -21,20 +21,20 @@ public class ProductService {
         return productRepository.save(customer);
     }
 
-    public Product findByName(String name) {
-        return productRepository.findByName(name);
+    public Product findByProductName(String name) {
+        return productRepository.findByProductName(name);
     }
 
     public Product findByCategoryName(String categoryName) {
-        return productRepository.findByName(categoryName);
+        return productRepository.findByCategoryName(categoryName);
     }
 
     public Product findByCategoryId(long id) {
-        return productRepository.findById(id);
+        return productRepository.findByCategoryId(id);
     }
 
     public Product findById(long id) {
-        return productRepository.findById(id);
+        return productRepository.findByProductId(id);
     }
 
     public Page<Product> findAll(int page, int size) {

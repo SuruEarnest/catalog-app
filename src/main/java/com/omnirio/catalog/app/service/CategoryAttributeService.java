@@ -21,15 +21,15 @@ public class CategoryAttributeService {
     }
 
     public CategoryAttribute findByName(String categoryName) {
-        return categoryAttributeRepository.findByName(categoryName);
+        return categoryAttributeRepository.findByCategoryAttributeName(categoryName);
     }
 
-    public CategoryAttribute findByCategoryId(long id) {
-        return categoryAttributeRepository.findById(id);
+    public CategoryAttribute findByCategoryAttributeId(long id) {
+        return categoryAttributeRepository.findByCategoryAttributeId(id);
     }
 
     public CategoryAttribute findById(long id) {
-        return categoryAttributeRepository.findById(id);
+        return categoryAttributeRepository.findByCategoryAttributeId(id);
     }
 
     public Page<CategoryAttribute> findAll(int page, int size) {

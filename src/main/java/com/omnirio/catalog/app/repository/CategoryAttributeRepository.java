@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryAttributeRepository extends JpaRepository<CategoryAttribute,Long> {
-	CategoryAttribute findByName(String name);
-	CategoryAttribute findById(long id);
+	CategoryAttribute findByCategoryAttributeName(String name);
+	CategoryAttribute findByCategoryAttributeId(long id);
 	Page<CategoryAttribute> findAll(Pageable pageable);
 }

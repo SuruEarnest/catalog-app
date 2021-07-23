@@ -21,12 +21,12 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Category findByName(String categoryName) {
-        return categoryRepository.findByName(categoryName);
+    public Category findByCategoryName(String categoryName) {
+        return categoryRepository.findByCategoryName(categoryName);
     }
 
     public Category findById(long id) {
-        return categoryRepository.findById(id);
+        return categoryRepository.findByCategoryId(id);
     }
 
     public Page<Category> findAll(int page, int size) {

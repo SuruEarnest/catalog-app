@@ -2,7 +2,6 @@ package com.omnirio.catalog.app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 
