@@ -25,10 +25,6 @@ public class CategoryService {
         return categoryRepository.findByName(categoryName);
     }
 
-    public Category findByCategoryId(long id) {
-        return categoryRepository.findById(id);
-    }
-
     public Category findById(long id) {
         return categoryRepository.findById(id);
     }
