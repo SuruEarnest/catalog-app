@@ -6,13 +6,12 @@ import org.springframework.stereotype.Repository;
 import com.omnirio.catalog.app.model.Product;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
 
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
-	Product findByProductId(long id);
 	Page<Product> findAll(Pageable pageable);
-	Product findByProductName(String name);
-	Product findByCategoryId(long id);
-	Product findByCategoryName(String  name);
+	Optional<Product>findByProductName(String name);
+	Page<Product> findByCategoryId(long id,Pageable pageable);
 }
