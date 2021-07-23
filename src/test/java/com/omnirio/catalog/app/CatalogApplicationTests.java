@@ -4,7 +4,7 @@ package com.omnirio.catalog.app;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RexistroApplicationTests {
+class CatalogApplicationTests {
 
 	//@Test
 	void contextLoads() {
