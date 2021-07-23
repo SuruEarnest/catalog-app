@@ -20,7 +20,7 @@ import java.util.Date;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/api")
-@Api(tags = "Product Category Management Endpoints ", description = "Endpoints for to manage product categories", hidden = false, produces = "application/json")
+@Api(tags = "Category Management Endpoints ", description = "Endpoints for to manage product categories", hidden = false, produces = "application/json")
 public class CategoryApi {
 
     @Autowired
