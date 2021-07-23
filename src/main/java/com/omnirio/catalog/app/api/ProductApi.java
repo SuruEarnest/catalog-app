@@ -62,7 +62,7 @@ public class ProductApi {
 		return new ResponseEntity<>(responseBody, responseBody.getStatus());
 	}
 	
-	@GetMapping(value="/v1/catalogs",consumes="application/json",produces="application/json")
+	@GetMapping(value="/v1/products",consumes="application/json",produces="application/json")
 	@ApiOperation(value = "Get Products", notes = "gets all products in the catalog.")
 	public @ResponseBody
 	ResponseEntity<?> getProduct(@RequestParam("page") int page,  @RequestParam("size") int size) {
@@ -73,6 +73,22 @@ public class ProductApi {
 				.withMessage(products.getContent().isEmpty()? "No records found": "product details fetched successfully.")
 				.withTimestamp(new Date())
 				.withData(products)
+				.withStatus(HttpStatus.OK).build();
+		return new ResponseEntity<>(responseBody, responseBody.getStatus());
+
+	}
+
+	@GetMapping(value="/v1/products/{id}",consumes="application/json",produces="application/json")
+	@ApiOperation(value = "Get Products", notes = "gets all products in the catalog.")
+	public @ResponseBody
+	ResponseEntity<?> getProductById(@PathVariable("id") long id) {
+
+		Product product = productService.findById(id);
+		CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
+				.withCode("200")
+				.withMessage(product!=null ? "Product not found": "product details fetched successfully.")
+				.withTimestamp(new Date())
+				.withData(product)
 				.withStatus(HttpStatus.OK).build();
 		return new ResponseEntity<>(responseBody, responseBody.getStatus());
 

@@ -31,7 +31,7 @@ public class CategoryApi {
     @PostMapping(value="/v1/categories",consumes="application/json",produces="application/json")
     @ApiOperation(value = "Create Category", notes = "creates a new category on the product catalogs.")
     public @ResponseBody
-    ResponseEntity<?> createProduct(@RequestBody @Validated Category category, BindingResult result) {
+    ResponseEntity<?> createCategory(@RequestBody @Validated Category category, BindingResult result) {
 
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
@@ -49,7 +49,7 @@ public class CategoryApi {
     @PutMapping(value="/v1/categories",consumes="application/json",produces="application/json")
     @ApiOperation(value = "Update Category", notes = "update an existing category on the product catalogs.")
     public @ResponseBody
-    ResponseEntity<?> updateProduct(@RequestBody @Validated Category category, BindingResult result) {
+    ResponseEntity<?> updateCategory(@RequestBody @Validated Category category, BindingResult result) {
 
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
@@ -67,7 +67,7 @@ public class CategoryApi {
     @GetMapping(value="/v1/categories",consumes="application/json",produces="application/json")
     @ApiOperation(value = "Get Categories", notes = "gets all products categories in the catalog.")
     public @ResponseBody
-    ResponseEntity<?> getProduct(@RequestParam("page") int page,  @RequestParam("size") int size) {
+    ResponseEntity<?> getCategories(@RequestParam("page") int page,  @RequestParam("size") int size) {
 
         Page<Category> categories = categoryService.findAll(page, size);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
@@ -78,6 +78,21 @@ public class CategoryApi {
                 .withStatus(HttpStatus.OK).build();
         return new ResponseEntity<>(responseBody, responseBody.getStatus());
 
+    }
+
+    @GetMapping(value="/v1/categories/{id}",consumes="application/json",produces="application/json")
+    @ApiOperation(value = "Get Categories", notes = "gets all products categories in the catalog.")
+    public @ResponseBody
+    ResponseEntity<?> getCategoryById(@PathVariable("id") long id) {
+
+       Category category = categoryService.findById(id);
+        CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
+                .withCode("200")
+                .withMessage(category!=null ? "No record found": "category details fetched successfully.")
+                .withTimestamp(new Date())
+                .withData(category)
+                .withStatus(HttpStatus.OK).build();
+        return new ResponseEntity<>(responseBody, responseBody.getStatus());
     }
 
 }

@@ -26,9 +26,9 @@ public class CategoryAttributeApi {
     private CategoryAttributeService categoryAttributeService;
 
     @PostMapping(value="/v1/category-attributes",consumes="application/json",produces="application/json")
-    @ApiOperation(value = "Create Category Attribute", notes = "creates a new category on the product catalogs.")
+    @ApiOperation(value = "Create Category Attribute", notes = "creates a new category attribute on the product catalogs.")
     public @ResponseBody
-    ResponseEntity<?> createProduct(@RequestBody @Validated CategoryAttribute categoryAttribute, BindingResult result) {
+    ResponseEntity<?> createCategoryAttribute(@RequestBody @Validated CategoryAttribute categoryAttribute, BindingResult result) {
 
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
@@ -44,9 +44,9 @@ public class CategoryAttributeApi {
     }
 
     @PutMapping(value="/v1/category-attributes",consumes="application/json",produces="application/json")
-    @ApiOperation(value = "Update Category", notes = "update an existing category on the product catalogs.")
+    @ApiOperation(value = "Update Category", notes = "update an existing category attribute on the product catalogs.")
     public @ResponseBody
-    ResponseEntity<?> updateProduct(@RequestBody @Validated CategoryAttribute categoryAttribute, BindingResult result) {
+    ResponseEntity<?> updateCategoryAttribute(@RequestBody @Validated CategoryAttribute categoryAttribute, BindingResult result) {
 
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
@@ -62,14 +62,30 @@ public class CategoryAttributeApi {
     }
 
     @GetMapping(value="/v1/category-attributes",consumes="application/json",produces="application/json")
-    @ApiOperation(value = "Get Categories", notes = "gets all products categories in the catalog.")
+    @ApiOperation(value = "Get Categories", notes = "gets all products category attributes in the catalog.")
     public @ResponseBody
-    ResponseEntity<?> getProduct(@RequestParam("page") int page,  @RequestParam("size") int size) {
+    ResponseEntity<?> getAllCategoryAttributes(@RequestParam("page") int page,  @RequestParam("size") int size) {
 
         Page<CategoryAttribute> categories = categoryAttributeService.findAll(page, size);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("200")
                 .withMessage(categories.getContent().isEmpty()? "No records found": "category attribute details fetched successfully.")
+                .withTimestamp(new Date())
+                .withData(categories)
+                .withStatus(HttpStatus.OK).build();
+        return new ResponseEntity<>(responseBody, responseBody.getStatus());
+
+    }
+
+    @GetMapping(value="/v1/category-attributes/{id}",consumes="application/json",produces="application/json")
+    @ApiOperation(value = "Get Categories", notes = "gets category attributes by id in the catalog.")
+    public @ResponseBody
+    ResponseEntity<?> getCategoryAttributesById(@PathVariable("id") long id) {
+
+     CategoryAttribute categories = categoryAttributeService.findById(id);
+        CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
+                .withCode("200")
+                .withMessage(categories!=null ? "No records found": "category attribute details fetched successfully.")
                 .withTimestamp(new Date())
                 .withData(categories)
                 .withStatus(HttpStatus.OK).build();
