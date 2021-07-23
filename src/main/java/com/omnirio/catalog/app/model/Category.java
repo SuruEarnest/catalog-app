@@ -14,10 +14,10 @@ public class Category extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long categoryId;
+    private long id;
 
     @NotBlank(message = "category name is required.")
-    @Column(name="category_name")
+    @Column(name="category_name",unique=true)
     private String categoryName;
 
     @NotBlank(message = "category attribute is required.")

@@ -11,7 +11,7 @@ public class CategoryAttribute extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long categoryAttributeId;
+    private long id;
 
     @NotBlank(message = "Attribute name is required.")
     @Column(name="attribute_name")
