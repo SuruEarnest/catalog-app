@@ -3,9 +3,7 @@ package com.omnirio.catalog.app.api;
 import com.omnirio.catalog.app.exceptions.BadRequestException;
 import com.omnirio.catalog.app.exceptions.CustomResponse;
 import com.omnirio.catalog.app.model.Category;
-import com.omnirio.catalog.app.model.Product;
 import com.omnirio.catalog.app.service.CategoryService;
-import com.omnirio.catalog.app.service.ProductService;
 import com.omnirio.catalog.app.utils.ErrorResponseManager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -64,7 +62,7 @@ public class CategoryApi {
         return new ResponseEntity<>(responseBody, responseBody.getStatus());
     }
 
-    @GetMapping(value="/v1/categories",consumes="application/json",produces="application/json")
+    @GetMapping(value="/v1/categories",produces="application/json")
     @ApiOperation(value = "Get Categories", notes = "gets all products categories in the catalog.")
     public @ResponseBody
     ResponseEntity<?> getCategories(@RequestParam("page") int page,  @RequestParam("size") int size) {
@@ -80,7 +78,7 @@ public class CategoryApi {
 
     }
 
-    @GetMapping(value="/v1/categories/{id}",consumes="application/json",produces="application/json")
+    @GetMapping(value="/v1/categories/{id}",produces="application/json")
     @ApiOperation(value = "Get Categories", notes = "gets all products categories in the catalog.")
     public @ResponseBody
     ResponseEntity<?> getCategoryById(@PathVariable("id") long id) {

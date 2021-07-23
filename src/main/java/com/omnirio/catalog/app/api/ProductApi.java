@@ -62,23 +62,23 @@ public class ProductApi {
 		return new ResponseEntity<>(responseBody, responseBody.getStatus());
 	}
 	
-	@GetMapping(value="/v1/products",consumes="application/json",produces="application/json")
-	@ApiOperation(value = "Get Products", notes = "gets all products in the catalog.")
+	@GetMapping(value="/v1/products",produces="application/json")
+	@ApiOperation(value = "Get All Products", notes = "gets all products in the catalog.")
 	public @ResponseBody
-	ResponseEntity<?> getProduct(@RequestParam("page") int page,  @RequestParam("size") int size) {
+	ResponseEntity<?> getAllProducts(@RequestParam("page") int page,  @RequestParam("size") int size) {
 
         Page<Product> products = productService.findAll(page, size);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
 				.withCode("200")
 				.withMessage(products.getContent().isEmpty()? "No records found": "product details fetched successfully.")
 				.withTimestamp(new Date())
-				.withData(products)
+				.withData(products.getContent())
 				.withStatus(HttpStatus.OK).build();
 		return new ResponseEntity<>(responseBody, responseBody.getStatus());
 
 	}
 
-	@GetMapping(value="/v1/products/{id}",consumes="application/json",produces="application/json")
+	@GetMapping(value="/v1/products/{id}",produces="application/json")
 	@ApiOperation(value = "Get Products", notes = "gets all products in the catalog.")
 	public @ResponseBody
 	ResponseEntity<?> getProductById(@PathVariable("id") long id) {

@@ -61,7 +61,7 @@ public class CategoryAttributeApi {
         return new ResponseEntity<>(responseBody, responseBody.getStatus());
     }
 
-    @GetMapping(value="/v1/category-attributes",consumes="application/json",produces="application/json")
+    @GetMapping(value="/v1/category-attributes",produces="application/json")
     @ApiOperation(value = "Get Categories", notes = "gets all products category attributes in the catalog.")
     public @ResponseBody
     ResponseEntity<?> getAllCategoryAttributes(@RequestParam("page") int page,  @RequestParam("size") int size) {
@@ -71,13 +71,13 @@ public class CategoryAttributeApi {
                 .withCode("200")
                 .withMessage(categories.getContent().isEmpty()? "No records found": "category attribute details fetched successfully.")
                 .withTimestamp(new Date())
-                .withData(categories)
+                .withData(categories.getContent())
                 .withStatus(HttpStatus.OK).build();
         return new ResponseEntity<>(responseBody, responseBody.getStatus());
 
     }
 
-    @GetMapping(value="/v1/category-attributes/{id}",consumes="application/json",produces="application/json")
+    @GetMapping(value="/v1/category-attributes/{id}",produces="application/json")
     @ApiOperation(value = "Get Categories", notes = "gets category attributes by id in the catalog.")
     public @ResponseBody
     ResponseEntity<?> getCategoryAttributesById(@PathVariable("id") long id) {
