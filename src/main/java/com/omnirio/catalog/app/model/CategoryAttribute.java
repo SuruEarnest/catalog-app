@@ -2,6 +2,7 @@ package com.omnirio.catalog.app.model;
 import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Data
@@ -13,11 +14,11 @@ public class CategoryAttribute extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Attribute name is required.")
+    @NotEmpty(message = "Attribute name is required.")
     @Column(name="attribute_name")
     private String categoryAttributeName;
 
-    @NotBlank(message = "Attribute value is required.")
+    @NotEmpty(message = "Attribute value is required.")
     @Column(name="attribute_value")
     private String categoryAttributeValue;
 }

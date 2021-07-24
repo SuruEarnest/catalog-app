@@ -14,12 +14,12 @@ public class Product extends BaseEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotBlank(message = "Product name is required.")
+	@NotEmpty(message = "Product name is required.")
 	@Column(name="product_name" , unique=true)
 	private String productName;
 
-	@NotBlank(message = "category Id is required.")
 	@ManyToOne
+	@NotNull
 	@JoinColumn(name="category",unique=true)
 	private Category category;
 
