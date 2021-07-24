@@ -3,6 +3,7 @@ package com.omnirio.catalog.app.api;
 import com.omnirio.catalog.app.exceptions.BadRequestException;
 import com.omnirio.catalog.app.exceptions.CustomResponse;
 import com.omnirio.catalog.app.model.Category;
+import com.omnirio.catalog.app.model.CategoryAttribute;
 import com.omnirio.catalog.app.service.CategoryService;
 import com.omnirio.catalog.app.utils.ErrorResponseManager;
 import io.swagger.annotations.Api;
@@ -16,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -92,5 +94,23 @@ public class CategoryApi {
                 .withStatus(HttpStatus.OK).build();
         return new ResponseEntity<>(responseBody, responseBody.getStatus());
     }
+
+    @GetMapping(value="/v1/category/{categoryId}/category-attributes",produces="application/json")
+    @ApiOperation(value = "Get Attribute by CategoryID", notes = "gets category attributes by category id in the catalog.")
+    public @ResponseBody
+    ResponseEntity<?> getCategoryAttributesByCategoryId(@RequestParam("categoryId") long categoryId) {
+
+        Category category = categoryService.findById(categoryId);
+        List<CategoryAttribute> categoryAttributes = category.getCategoryAttributes();
+        CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
+                .withCode("200")
+                .withMessage(categoryAttributes.isEmpty() ? "No category attributes ": "category attribute details fetched successfully.")
+                .withTimestamp(new Date())
+                .withData(categoryAttributes)
+                .withStatus(HttpStatus.OK).build();
+        return new ResponseEntity<>(responseBody, responseBody.getStatus());
+
+    }
+
 
 }

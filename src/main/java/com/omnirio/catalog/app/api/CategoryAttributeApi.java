@@ -2,8 +2,10 @@ package com.omnirio.catalog.app.api;
 
 import com.omnirio.catalog.app.exceptions.BadRequestException;
 import com.omnirio.catalog.app.exceptions.CustomResponse;
+import com.omnirio.catalog.app.model.Category;
 import com.omnirio.catalog.app.model.CategoryAttribute;
 import com.omnirio.catalog.app.service.CategoryAttributeService;
+import com.omnirio.catalog.app.service.CategoryService;
 import com.omnirio.catalog.app.utils.ErrorResponseManager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -33,12 +36,12 @@ public class CategoryAttributeApi {
         if (result.hasErrors()) {
             throw new BadRequestException("" + ErrorResponseManager.getErrorMessages(result));
         }
-        CategoryAttribute createdCategoryAttrribute = categoryAttributeService.create(categoryAttribute);
+        CategoryAttribute createdCategoryAttribute = categoryAttributeService.create(categoryAttribute);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("201")
                 .withMessage("category attribute saved successfully.")
                 .withTimestamp(new Date())
-                .withData(createdCategoryAttrribute)
+                .withData(createdCategoryAttribute)
                 .withStatus(HttpStatus.CREATED).build();
         return new ResponseEntity<>(responseBody, responseBody.getStatus());
     }
@@ -78,7 +81,7 @@ public class CategoryAttributeApi {
     }
 
     @GetMapping(value="/v1/category-attributes/{id}",produces="application/json")
-    @ApiOperation(value = "Get Attrbute by ID", notes = "gets category attributes by id in the catalog.")
+    @ApiOperation(value = "Get Attribute by ID", notes = "gets category attributes by id in the catalog.")
     public @ResponseBody
     ResponseEntity<?> getCategoryAttributesById(@PathVariable("id") long id) {
 
