@@ -20,9 +20,8 @@ public class Category extends BaseEntity implements Serializable {
     @Column(name="category_name",unique=true)
     private String categoryName;
 
-    @NotBlank(message = "category attribute is required.")
     @NotEmpty(message="category attributes cannot be empty")
     @JoinColumn(name="category_attribute",unique=true)
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<CategoryAttribute> categoryAttributes;
 }

@@ -3,7 +3,6 @@ package com.omnirio.catalog.app.service;
 import com.omnirio.catalog.app.exceptions.BadRequestException;
 import com.omnirio.catalog.app.exceptions.RecordNotFoundException;
 import com.omnirio.catalog.app.model.CategoryAttribute;
-import com.omnirio.catalog.app.model.Product;
 import com.omnirio.catalog.app.repository.CategoryAttributeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 

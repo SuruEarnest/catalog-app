@@ -86,7 +86,7 @@ public class CategoryApi {
        Category category = categoryService.findById(id);
         CustomResponse<?> responseBody = new CustomResponse.CustomResponseBuilder<>()
                 .withCode("200")
-                .withMessage(category!=null ? "No record found": "category details fetched successfully.")
+                .withMessage(category==null ? "No record found": "category details fetched successfully.")
                 .withTimestamp(new Date())
                 .withData(category)
                 .withStatus(HttpStatus.OK).build();

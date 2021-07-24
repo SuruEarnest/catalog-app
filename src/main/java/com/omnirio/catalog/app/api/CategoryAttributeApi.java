@@ -26,7 +26,7 @@ public class CategoryAttributeApi {
     private CategoryAttributeService categoryAttributeService;
 
     @PostMapping(value="/v1/category-attributes",consumes="application/json",produces="application/json")
-    @ApiOperation(value = "Create Category Attribute", notes = "creates a new category attribute on the product catalogs.")
+    @ApiOperation(value = "Create Attribute", notes = "creates a new category attribute on the product catalogs.")
     public @ResponseBody
     ResponseEntity<?> createCategoryAttribute(@RequestBody @Validated CategoryAttribute categoryAttribute, BindingResult result) {
 
@@ -44,7 +44,7 @@ public class CategoryAttributeApi {
     }
 
     @PutMapping(value="/v1/category-attributes",consumes="application/json",produces="application/json")
-    @ApiOperation(value = "Update Category", notes = "update an existing category attribute on the product catalogs.")
+    @ApiOperation(value = "Update Attribute", notes = "update an existing category attribute on the product catalogs.")
     public @ResponseBody
     ResponseEntity<?> updateCategoryAttribute(@RequestBody @Validated CategoryAttribute categoryAttribute, BindingResult result) {
 
@@ -62,7 +62,7 @@ public class CategoryAttributeApi {
     }
 
     @GetMapping(value="/v1/category-attributes",produces="application/json")
-    @ApiOperation(value = "Get Categories", notes = "gets all products category attributes in the catalog.")
+    @ApiOperation(value = "Get All Attributes", notes = "gets all products category attributes in the catalog.")
     public @ResponseBody
     ResponseEntity<?> getAllCategoryAttributes(@RequestParam("page") int page,  @RequestParam("size") int size) {
 
@@ -78,7 +78,7 @@ public class CategoryAttributeApi {
     }
 
     @GetMapping(value="/v1/category-attributes/{id}",produces="application/json")
-    @ApiOperation(value = "Get Categories", notes = "gets category attributes by id in the catalog.")
+    @ApiOperation(value = "Get Attrbute by ID", notes = "gets category attributes by id in the catalog.")
     public @ResponseBody
     ResponseEntity<?> getCategoryAttributesById(@PathVariable("id") long id) {
 
