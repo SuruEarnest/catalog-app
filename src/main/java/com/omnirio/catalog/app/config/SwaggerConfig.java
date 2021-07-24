@@ -41,7 +41,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .description("This API provides endpoints for omnirio's catalog management platform.")
                 .version("1.0.0")
                 .license("Omnirio Tech License Version 1.0")
-                .contact(new Contact("Earnest Suru Erihbra", "https://linkedin.com/earnest-suru/", "serihbrah@gmail.com"))
+                .contact(new Contact("Earnest Suru Erihbra", "https://linkedin.com/in/suru-earnest/", "serihbrah@gmail.com"))
                 .build();
     }
     
